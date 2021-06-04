@@ -31,8 +31,3 @@
         service httpd start
         chkconfig httpd on
         echo "<html><body><h1>Hello JJTech Team</h1></body></html>" > /var/www/html/index.html
-
-  - debug:
-      msg: "{{ ec2_instance }}"
-  - debug:
-      msg: "{{ ec2.results[0].instance_ids }}"
