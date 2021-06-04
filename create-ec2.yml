@@ -24,6 +24,10 @@
       name: "{{ instance_name }}"
       tags:
         created_by: "{{ created_by }}"
+        Owner: "{{ Owner }}"
+        App_Name: "{{ App_Name }}"
+        Cost_Center: "{{ Cost_Center }}"
+        Business_Unit: "{{ Business_Unit }}"
       user_data: |
         #!/bin/bash
         yum update -y
@@ -32,7 +36,7 @@
         chkconfig httpd on
         echo "<html><body><h1>Hello JJTech Team</h1></body></html>" > /var/www/html/index.html
 
-  - debug:
-      msg: "{{ ec2_instance }}"
-  - debug:
-      msg: "{{ ec2.results[0].instance_ids }}"
+#  - debug:
+#      msg: ec2_instance
+#  - debug:
+#      msg: "{{ ec2.results[0].instance_ids }}"
