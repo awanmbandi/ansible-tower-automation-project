@@ -4,5 +4,5 @@
   - name: Create an S3 bucket
     s3_bucket:
       name: "{{ S3_Bucket_Name }}"
-      region: eu-west-1
+      region: us-east-1
       state: present
