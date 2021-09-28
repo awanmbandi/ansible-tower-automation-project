@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  become: yes
   tasks:
     # This Task Launches a Webserver EC2 Instance
   - name: Provision an EC2 Webserver
