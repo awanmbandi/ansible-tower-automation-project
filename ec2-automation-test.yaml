@@ -6,13 +6,13 @@
   tasks:
   - name: Create EC2
     ec2_instance:
-      key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname') }}"
-      security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}') }}"
-      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}') }}"
+      key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname', region='{{ deployment_region }}') }}"
+      security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}', region='{{ deployment_region }}') }}"
+      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}', region='{{ deployment_region }}') }}"
       instance_type: "{{ instance_type }}"
       region: "{{ deployment_region }}"
-      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}') }}"
-      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}') }}"
+      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', region='{{ deployment_region }}') }}"
+      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', region='{{ deployment_region }}') }}"
       wait: true
       state: "{{ resource_state }}"
       volumes:
