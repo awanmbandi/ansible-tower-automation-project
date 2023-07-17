@@ -4,20 +4,19 @@
   gather_facts: false
 
   # create a variable named "proxy_env" that is a dictionary
-  vars:
-    deploy_region:
-      region: us-east-1
-      
+  environment:
+    AWS_DEFAULT_REGION: us-east-1
+
   tasks:
   - name: Create EC2
     ec2_instance:
       region: "{{ deployment_region }}"
-      key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname', {{ deploy_region }}) }}"
-      security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}', {{ deploy_region }) }}"
-      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}', {{ deploy_region }}) }}"
+      key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname', region=AWS_DEFAULT_REGION) }}"
+      security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}', region=AWS_DEFAULT_REGION) }}"
+      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}', region=AWS_DEFAULT_REGION) }}"
       instance_type: "{{ instance_type }}"
-      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', {{ deploy_region }}) }}"
-      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', {{ deploy_region }}) }}"
+      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', region=AWS_DEFAULT_REGION) }}"
+      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', region=AWS_DEFAULT_REGION) }}"
       wait: true
       state: "{{ resource_state }}"
       volumes:
