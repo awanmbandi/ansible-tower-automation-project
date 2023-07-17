@@ -3,6 +3,11 @@
   connection: local
   gather_facts: false
 
+  vars:
+    # Define the default region as 'us-east-1' (or any other desired region).
+    # If 'aws_region' is provided as an extra variable, it will override this value.
+    deployment_region: "{{ aws_region | default('us-east-1') }}"
+    
   tasks:
   - name: Create EC2
     ec2_instance:
