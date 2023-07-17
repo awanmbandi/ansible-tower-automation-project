@@ -14,7 +14,7 @@
       vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', region='us-east-1') }}"
       instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', region='us-east-1') }}"
       wait: true
-      state: {{ resource_state }}
+      state: "{{ resource_state }}"
       volumes:
         - device_name: /dev/xvda
           ebs:
