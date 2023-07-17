@@ -7,12 +7,12 @@
   - name: Create EC2
     ec2_instance:
       region: "{{ deployment_region }}"
-      key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname', region='{{ ec2_region }}') }}"
-      security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}', region='{{ ec2_region }}') }}"
-      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}', region='{{ ec2_region }}') }}"
+      key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname', region=EC2_REGION) }}"
+      security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}', region=EC2_REGION) }}"
+      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}', region=EC2_REGION) }}"
       instance_type: "{{ instance_type }}"
-      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', region='{{ ec2_region }}') }}"
-      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', region='{{ ec2_region }}') }}"
+      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', region=EC2_REGION) }}"
+      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', region=EC2_REGION) }}"
       wait: true
       state: "{{ resource_state }}"
       volumes:
