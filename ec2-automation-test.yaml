@@ -2,7 +2,7 @@
 - hosts: localhost
   connection: local
   gather_facts: true
-    - aws_region_facts:
+  #  - aws_region_facts:
 
   tasks:
   - name: Create EC2
