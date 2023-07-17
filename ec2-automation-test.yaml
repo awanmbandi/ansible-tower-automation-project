@@ -3,11 +3,11 @@
   connection: local
   gather_facts: false
 
-  # create a variable named "proxy_env" that is a dictionary
-  environment:
-    AWS_DEFAULT_REGION: us-east-1
-
   tasks:
+  - name: Set environment variables
+      shell: |
+        export AWS_DEFAULT_REGION=us-east-1
+        export AWS_REGION=us-east-1
   - name: Create EC2
     ec2_instance:
       region: "{{ deployment_region }}"
