@@ -12,12 +12,12 @@
   - name: Create EC2
     ec2_instance:
       region: "{{ deployment_region }}"
-      key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname'), {{ deploy_region } }}"
+      key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname', {{ deploy_region }}) }}"
       security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}', {{ deploy_region }) }}"
-      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}', {{ deploy_region }) }}"
+      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}', {{ deploy_region }}) }}"
       instance_type: "{{ instance_type }}"
-      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', {{ deploy_region }) }}"
-      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', {{ deploy_region }) }}"
+      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', {{ deploy_region }}) }}"
+      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', {{ deploy_region }}) }}"
       wait: true
       state: "{{ resource_state }}"
       volumes:
