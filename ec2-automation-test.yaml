@@ -8,7 +8,7 @@
     ec2_instance:
       key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname', region='us-east-1') }}"
       security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}', region='us-east-1') }}"
-      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}', region='us-east-1') }}"
+      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ ami_type }}', region='us-east-1') }}"
       instance_type: "{{ instance_type }}"
       region: "us-east-1"
       vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', region='us-east-1') }}"
