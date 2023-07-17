@@ -1,19 +1,20 @@
 ---
 - hosts: localhost
   connection: local
-  gather_facts: False
+  gather_facts: false
 
   tasks:
   - name: Create EC2
     ec2_instance:
+      region: "{{ deployment_region }}"
       key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname', region='us-east-1') }}"
       security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}', region='us-east-1') }}"
-      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ ami_type }}', region='us-east-1') }}"
+      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}', region='us-east-1') }}"
       instance_type: "{{ instance_type }}"
-      region: "us-east-1"
       vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', region='us-east-1') }}"
       instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', region='us-east-1') }}"
       wait: true
+      state: "{{ resource_state }}"
       volumes:
         - device_name: /dev/xvda
           ebs:
@@ -34,7 +35,12 @@
         yum install httpd -y
         service httpd start
         chkconfig httpd on
-        echo "<html><body><h1>Hello JJTech Team</h1></body></html>" > /var/www/html/index.html
+        yum install wget
+        wget https://github.com/awanmbandi/aws-real-world-projects/raw/web-appplications-src-code/medlife-health-care.zip -P ~/
+        yum install unzip -y 
+        unzip ~/medlife-health-care.zip
+        rm -f /var/www/html/index.html 
+        cp -rf medlife-master/* /var/www/html/
 
 #  - debug:
 #      msg: ec2_instance
