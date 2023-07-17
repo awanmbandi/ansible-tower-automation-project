@@ -5,9 +5,10 @@
 
   tasks:
   - name: Set environment variables
-      shell: |
-        export AWS_DEFAULT_REGION=us-east-1
-        export AWS_REGION=us-east-1
+    environment:
+      AWS_DEFAULT_REGION: us-east-1
+      AWS_REGION: us-east-1
+
   - name: Create EC2
     ec2_instance:
       region: "{{ deployment_region }}"
