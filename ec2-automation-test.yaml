@@ -5,6 +5,8 @@
   #  - aws_region_facts:
 
   tasks:
+  - name: Gather facts about all regions
+    aws_region_facts:
   - name: Create EC2
     ec2_instance:
       region: "{{ deployment_region }}"
