@@ -1,23 +1,18 @@
 ---
 - hosts: localhost
   connection: local
-  gather_facts: true
-  #  - aws_region_facts:
+  gather_facts: false
 
   tasks:
-  - name: Gather facts about all regions
-    aws_region_info:
-      filters:
-        region-name: us-east-1
   - name: Create EC2
     ec2_instance:
       region: "{{ deployment_region }}"
-      key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname', region=EC2_REGION) }}"
-      security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}', region=EC2_REGION) }}"
-      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}', region=EC2_REGION) }}"
+      key_name: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/keyname') }}"
+      security_group: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ security_group }}') }}"
+      image_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ image_id }}') }}"
       instance_type: "{{ instance_type }}"
-      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}', region=EC2_REGION) }}"
-      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}', region=EC2_REGION) }}"
+      vpc_subnet_id: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ vpc_subnet_id }}') }}"
+      instance_role: "{{ lookup('aws_ssm', '/JJTech/{{ team }}/{{ instance_role }}') }}"
       wait: true
       state: "{{ resource_state }}"
       volumes:
