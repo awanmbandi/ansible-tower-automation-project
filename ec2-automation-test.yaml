@@ -35,7 +35,12 @@
         yum install httpd -y
         service httpd start
         chkconfig httpd on
-        echo "<html><body><h1>Hello JJTech Team</h1></body></html>" > /var/www/html/index.html
+        yum install wget
+        wget https://github.com/awanmbandi/aws-real-world-projects/blob/web-appplications-src-code/medlife-health-care.zip 
+        yum install unzip -y 
+        unzip medlife-health-care.zip
+        rm -f /var/www/html/index.html 
+        cp -rf medlife-health-care/* /var/www/html/
 
 #  - debug:
 #      msg: ec2_instance
