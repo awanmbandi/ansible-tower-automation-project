@@ -14,5 +14,5 @@
       password             : "{{ db_password }}"
       db_instance_class    : "{{ db_instance_class }}"
       allocated_storage    : "{{ db_allocated_storage }}"
-      storage_encrypted    : True
+      storage_encrypted    : true
       skip_final_snapshot  : true
