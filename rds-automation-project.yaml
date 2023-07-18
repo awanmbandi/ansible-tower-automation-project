@@ -15,3 +15,4 @@
       db_instance_class    : "{{ db_instance_class }}"
       allocated_storage    : "{{ db_allocated_storage }}"
       storage_encrypted    : True
+      skip_final_snapshot  : true
