@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+  - name                   : Create DB instance with added AWS KMS Encryption Enabled
+    amazon.aws.rds_instance:
+      id                   : "{{ db_identifier }}"
+      state                : "{{ db_state }}"
+      engine               : "{{ db_engine }}"
+      username             : "{{ db_username }}"
+      password             : "{{ db_password }}"
+      db_instance_class    : "{{ db_instance_class }}"
+      allocated_storage    : "{{ db_allocated_storage }}"
+      storage_encrypted    : True
+
