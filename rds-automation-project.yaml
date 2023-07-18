@@ -8,6 +8,7 @@
     rds_instance           :
       id                   : "{{ db_identifier }}"
       state                : "{{ db_state }}"
+      region               : "{{ db_region }}"
       engine               : "{{ db_engine }}"
       username             : "{{ db_username }}"
       password             : "{{ db_password }}"
