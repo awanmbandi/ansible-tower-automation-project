@@ -5,7 +5,7 @@
 
   tasks:
   - name                   : Create DB instance with added AWS KMS Encryption Enabled
-    amazon.aws.rds_instance:
+    rds_instance           :
       id                   : "{{ db_identifier }}"
       state                : "{{ db_state }}"
       engine               : "{{ db_engine }}"
