@@ -16,6 +16,10 @@
       set_fact:
         db_username: "{{ secrets.SecretString | from_json | default({}).username }}"
         db_password: "{{ secrets.SecretString | from_json | default({}).password }}"
+    
+    - name: Display the retrieved credentials
+      debug:
+        msg: "DB Username: {{ db_username }}, DB Password: {{ db_password }}"
 
     - name                   : Create DB instance with added AWS KMS Encryption Enabled
       rds_instance           :
