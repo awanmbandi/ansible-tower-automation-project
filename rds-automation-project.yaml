@@ -2,8 +2,20 @@
 - hosts: localhost
   connection: local
   gather_facts: False
+  vars_files:
+    - variables/vars-rds-automation-with-sm.yaml
 
   tasks:
+  - name: Get RDS credentials from Secrets Manager
+    community.aws.aws_secret:
+      name: webapp_database_credential
+    register: secrets
+
+  - name: Set variables from retrieved secrets
+    set_fact:
+      db_username: "{{ secrets.SecretString | from_json | default({}).username }}"
+      db_password: "{{ secrets.SecretString | from_json | default({}).password }}"
+
   - name                   : Create DB instance with added AWS KMS Encryption Enabled
     rds_instance           :
       id                   : "{{ db_identifier }}"

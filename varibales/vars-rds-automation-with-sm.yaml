@@ -1,0 +1,6 @@
+id                   : testdatabase
+state                : present
+region               : us-east-1
+engine               : mysql
+db_instance_class    : "db.t2.small"
+allocated_storage    : 20
