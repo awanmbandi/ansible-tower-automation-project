@@ -7,7 +7,7 @@
 
   tasks:
     - name: Get RDS credentials from Secrets Manager
-      community.aws.aws_secret:
+      aws_secret:
         name: webapp_database_credential
       register: secrets
 
