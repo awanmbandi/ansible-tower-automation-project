@@ -1,6 +1,10 @@
-id                   : testdatabase
-state                : present
-region               : us-east-1
-engine               : mysql
-db_instance_class    : "db.t2.small"
-allocated_storage    : 20
+## Secret manager
+secret_name       : webapp_database_credential
+secret_region     : us-east-1
+
+id                : testdatabase
+state             : present
+region            : us-east-1
+engine            : mysql
+db_instance_class : "db.t2.small"
+allocated_storage : 20
