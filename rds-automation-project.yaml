@@ -9,6 +9,7 @@
     - name: Get RDS credentials from Secrets Manager
       aws_secret:
         name: webapp_database_credential
+        region: "{{ db_region }}"
       register: secrets
 
     - name: Set variables from retrieved secrets
