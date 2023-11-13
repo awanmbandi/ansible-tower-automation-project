@@ -1,7 +1,3 @@
-## Secret manager
-secret_name       : webapp_database_credential
-secret_region     : us-east-1
-
 id                : testdatabase
 state             : present
 region            : us-east-1

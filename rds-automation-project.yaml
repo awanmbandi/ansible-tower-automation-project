@@ -6,29 +6,14 @@
     - variables/vars-rds-automation-with-sm.yaml
 
   tasks:
-    - name: Get RDS credentials from Secrets Manager
-      aws_secret:
-        name: "{{ secret_name }}"
-        region: "{{ secret_region }}"
-      register: secrets
-
-    - name: Set variables from retrieved secrets
-      set_fact:
-        db_username: "{{ secrets.SecretString | from_json | default({}).username }}"
-        db_password: "{{ secrets.SecretString | from_json | default({}).password }}"
-    
-    - name: Display the retrieved credentials
-      debug:
-        msg: "DB Username: {{ db_username }}, DB Password: {{ db_password }}"
-
     - name                   : Create DB instance with added AWS KMS Encryption Enabled
       rds_instance           :
         id                   : "{{ db_identifier }}"
         state                : "{{ db_state }}"
         region               : "{{ db_region }}"
         engine               : "{{ db_engine }}"
-        username             : "{{ db_username }}"
-        password             : "{{ db_password }}"
+        username             : "{{ lookup('aws_ssm', 'db_username }}', region='us-east-1') }}"
+        password             : "{{ lookup('aws_ssm', 'db_password }}', region='us-east-1') }}"
         db_instance_class    : "{{ db_instance_class }}"
         allocated_storage    : "{{ db_allocated_storage }}"
         storage_encrypted    : true
