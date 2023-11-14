@@ -12,8 +12,8 @@
         state                : "{{ db_state }}"
         region               : "{{ db_region }}"
         engine               : "{{ db_engine }}"
-        username             : "{{ lookup('aws_ssm', 'db_username }}', region='us-east-1') }}"
-        password             : "{{ lookup('aws_ssm', 'db_password }}', region='us-east-1') }}"
+        username             : "{{ lookup('aws_ssm', 'db_username' }}', region='us-east-1') }}"
+        password             : "{{ lookup('aws_ssm', 'db_password' }}', region='us-east-1') }}"
         db_instance_class    : "{{ db_instance_class }}"
         allocated_storage    : "{{ db_allocated_storage }}"
         storage_encrypted    : true
